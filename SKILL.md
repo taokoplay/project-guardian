@@ -17,6 +17,59 @@ Project Guardian maintains a lightweight, token-efficient knowledge base about y
 - Architecture decision records (ADR)
 - Prevention of recurring issues
 
+## 📋 Response Format
+
+**IMPORTANT**: When this skill is invoked, ALWAYS include a brief status indicator at the start or end of your response:
+
+### Format Examples
+
+**When checking initialization:**
+```
+🔍 [Project Guardian] Checking project initialization status...
+```
+
+**When scanning project:**
+```
+✓ [Project Guardian] Scanned project and created knowledge base
+```
+
+**When recording bug:**
+```
+✓ [Project Guardian] Recorded bug #BUG-20260225-001
+```
+
+**When searching similar issues:**
+```
+🔎 [Project Guardian] Found 3 similar issues in history
+```
+
+**When loading project context:**
+```
+📚 [Project Guardian] Loaded project context from .project-ai/
+```
+
+### Response Template
+
+```
+[Brief status indicator with skill name]
+
+[Main response content]
+
+[Optional: What was accomplished]
+```
+
+**Example:**
+```
+✓ [Project Guardian] Scanned project and initialized knowledge base
+
+Detected:
+- Project Type: full-stack
+- Tech Stack: React 18.2.0, Express 4.18.2
+- Tools: pnpm, Vite, ESLint, Prettier
+
+Knowledge base created at .project-ai/
+```
+
 ## 🤖 Intelligent Auto-Detection
 
 **IMPORTANT**: Before following any workflow, ALWAYS check if the project has been initialized:
@@ -46,9 +99,9 @@ Project Guardian maintains a lightweight, token-efficient knowledge base about y
 
    **→ Proactively suggest initialization**:
    ```
-   🔍 I notice this project doesn't have a knowledge base yet.
+   🔍 [Project Guardian] This project doesn't have a knowledge base yet.
 
-   Would you like me to scan and initialize Project Guardian? This will:
+   Would you like me to scan and initialize? This will:
    - Automatically detect your tech stack and tools
    - Learn your code conventions and architecture
    - Enable smart bug tracking and prevention
@@ -136,6 +189,8 @@ Project Guardian maintains a lightweight, token-efficient knowledge base about y
 ### Example Output
 
 ```
+✓ [Project Guardian] Scanning project...
+
 🔍 Scanning project: /Users/dev/my-app
 
 📊 SCAN RESULTS
@@ -236,12 +291,23 @@ For specific queries:
    python scripts/update_knowledge.py /path/to/project --type bug --data /tmp/bug.json
    ```
 
-5. **Auto-prevention**: Next time similar code is written, search for related bugs and warn the user.
+5. **Respond to user**:
+   ```
+   ✓ [Project Guardian] Recorded bug #BUG-20260225-001
+
+   Title: Payment API timeout
+   Severity: high
+   Tags: api, timeout, payment
+
+   This bug has been saved to the knowledge base and will help prevent similar issues.
+   ```
+
+6. **Auto-prevention**: Next time similar code is written, search for related bugs and warn the user.
 
 ### Example Prevention
 
 ```
-⚠️ Similar issue found in knowledge base:
+⚠️ [Project Guardian] Similar issue found in knowledge base:
 
 Bug: Payment API timeout (2024-02-15)
 Root Cause: Missing timeout configuration
@@ -287,7 +353,19 @@ Consider applying the same fix to avoid this issue.
    python scripts/update_knowledge.py /path/to/project --type requirement --data req.json
    ```
 
-4. **Track implementation**: Update status as work progresses.
+4. **Respond to user**:
+   ```
+   ✓ [Project Guardian] Recorded requirement #REQ-20260225-001
+
+   Title: WeChat login support
+   Priority: high
+   Status: planned
+   Related modules: auth, user
+
+   Requirement saved to knowledge base.
+   ```
+
+5. **Track implementation**: Update status as work progresses.
 
 ## Recording Architecture Decisions
 

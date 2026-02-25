@@ -11,9 +11,9 @@
 **Claude 的智能响应：**
 
 ```
-🔍 我注意到这个项目还没有初始化知识库。
+🔍 [Project Guardian] 这个项目还没有初始化知识库。
 
-是否需要我扫描并初始化 Project Guardian？这将：
+是否需要我扫描并初始化？这将：
 - 自动检测你的技术栈和工具
 - 学习代码规范和架构
 - 启用智能 bug 追踪和防重复
@@ -28,7 +28,7 @@
 用户: yes
 
 Claude:
-✓ 正在扫描项目...
+✓ [Project Guardian] 正在扫描项目...
 ✓ 检测到 React + TypeScript + Express 全栈项目
 ✓ 发现 ESLint, Prettier, Vitest 配置
 ✓ 知识库已创建在 .project-ai/
@@ -49,7 +49,7 @@ Claude:
 
 **Claude（自动检测）：**
 ```
-🔍 检测到这是一个代码项目，但还没有知识库。
+🔍 [Project Guardian] 检测到这是一个代码项目，但还没有知识库。
 
 我可以先扫描项目来了解结构，这样能给你更准确的答案。是否初始化？(yes/no)
 ```
@@ -65,7 +65,7 @@ Claude:
 
 **Claude：**
 ```
-🔍 要记录 bug 需要先初始化项目知识库。
+🔍 [Project Guardian] 要记录 bug 需要先初始化项目知识库。
 
 是否扫描项目并创建知识库？(yes/no)
 ```
@@ -81,7 +81,7 @@ Claude:
 
 **Claude（直接回答，无初始化提示）：**
 ```
-✓ 加载项目知识库...
+📚 [Project Guardian] 加载项目知识库...
 
 根据项目配置，认证流程如下：
 
@@ -185,7 +185,7 @@ python scripts/check_initialized.py /path/to/project
 ### 传统方式（手动初始化）
 ```
 用户: 扫描项目
-Claude: ✓ 扫描完成
+Claude: ✓ [Project Guardian] 扫描完成
 
 用户: 认证流程是怎么工作的？
 Claude: [回答问题]
@@ -195,9 +195,9 @@ Claude: [回答问题]
 ### 智能方式（自动检测）
 ```
 用户: 认证流程是怎么工作的？
-Claude: 🔍 需要初始化，是否继续？
+Claude: 🔍 [Project Guardian] 需要初始化，是否继续？
 用户: yes
-Claude: ✓ 扫描完成，[回答问题]
+Claude: ✓ [Project Guardian] 扫描完成，[回答问题]
 ```
 **只需 1 步，更自然**
 
