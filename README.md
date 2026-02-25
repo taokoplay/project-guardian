@@ -6,6 +6,7 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
 Project Guardian 是一个轻量级的项目知识管理工具,帮助你:
+- 🤖 **智能检测**自动识别未初始化项目并提示初始化
 - 🔍 **自动扫描**项目结构、技术栈、开发工具
 - 📝 **追踪记录** Bug、需求、架构决策
 - 🔎 **智能搜索**历史问题,防止重复
@@ -28,9 +29,56 @@ git submodule add https://github.com/taokoplay/project-guardian.git .project-gua
 
 ### 初始化项目
 
+**方式一：手动初始化**
+
 ```bash
 # 在项目根目录运行
 python project-guardian/scripts/scan_project.py .
+```
+
+**方式二：智能检测（推荐）**
+
+当你在 Claude Code 中使用 Project Guardian skill 时，它会自动检测项目是否已初始化：
+
+```
+你: 这个项目的认证流程是怎么工作的？
+
+Claude: 🔍 我注意到这个项目还没有初始化知识库。
+
+是否需要我扫描并初始化 Project Guardian？这将：
+- 自动检测技术栈和工具
+- 学习代码规范和架构
+- 启用智能 bug 追踪
+- 大约需要 10 秒
+
+是否继续扫描？(yes/no)
+```
+
+**检查初始化状态**
+
+```bash
+# 快速检查项目是否已初始化
+python project-guardian/scripts/check_initialized.py
+
+# 输出示例（已初始化）
+{
+  "initialized": true,
+  "project_root": "/Users/dev/my-app",
+  "knowledge_base_path": "/Users/dev/my-app/.project-ai",
+  "core_files": {
+    "profile.json": true,
+    "tech-stack.json": true,
+    "conventions.json": true
+  }
+}
+
+# 输出示例（未初始化）
+{
+  "initialized": false,
+  "current_path": "/Users/dev/my-app",
+  "is_likely_project": true,
+  "suggestion": "This looks like a code project. Run 'python scripts/scan_project.py .' to initialize."
+}
 ```
 
 扫描器会自动检测:

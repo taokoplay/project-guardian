@@ -1,6 +1,6 @@
 ---
 name: project-guardian
-description: Intelligent project knowledge management system that automatically scans codebases, maintains project context, tracks bugs/requirements, and prevents recurring issues. Use when (1) User wants to initialize project tracking with phrases like "setup project guardian", "scan this project", "initialize knowledge base", "扫描项目", "初始化知识库", "设置项目守护", (2) Recording bugs or requirements with phrases like "record this bug", "save this requirement", "document this decision", "记录这个bug", "保存需求", "记录决策", "文档化这个问题", (3) Asking about project architecture, conventions, or history like "how does auth work", "what's our naming convention", "have we seen this before", "认证怎么工作的", "命名规范是什么", "之前遇到过这个问题吗", "有类似的bug吗", (4) Checking if similar issues occurred before, (5) Any project maintenance or knowledge management tasks like "项目维护", "知识管理", "bug追踪", "需求管理". Automatically detects project type, tech stack, and development tools. Supports both English and Chinese commands.
+description: Intelligent project knowledge management system with AUTO-DETECTION. Automatically initializes when user asks project-related questions in uninitialized codebases. Use when (1) User asks about project architecture/structure: "how does X work", "where is Y", "explain the auth flow", "项目结构", "认证怎么工作", (2) User asks about conventions: "what's our naming convention", "how should I structure this", "代码规范", "命名规范", (3) User wants to track bugs/requirements: "record this bug", "save requirement", "document decision", "记录bug", "保存需求", "记录决策", (4) User asks about similar issues: "have we seen this before", "similar bugs", "之前遇到过吗", "类似问题", (5) User explicitly initializes: "scan project", "setup guardian", "initialize knowledge base", "扫描项目", "初始化知识库". ALWAYS check for .project-ai/ directory first - if missing and user asks project questions, proactively offer to initialize. Supports English and Chinese.
 ---
 
 # Project Guardian
@@ -16,6 +16,64 @@ Project Guardian maintains a lightweight, token-efficient knowledge base about y
 - Bug/requirement tracking with similarity search
 - Architecture decision records (ADR)
 - Prevention of recurring issues
+
+## 🤖 Intelligent Auto-Detection
+
+**IMPORTANT**: Before following any workflow, ALWAYS check if the project has been initialized:
+
+### Auto-Detection Logic
+
+1. **Check for knowledge base**:
+   ```bash
+   # Quick check using helper script
+   python scripts/check_initialized.py
+
+   # Or manual check
+   ls -la .project-ai/ 2>/dev/null || ls -la ../.project-ai/ 2>/dev/null
+   ```
+
+   The helper script returns:
+   - Exit code 0: Project is initialized
+   - Exit code 1: Not initialized
+   - JSON output with detailed status
+
+2. **If NOT found AND user is asking project-related questions**:
+   - Questions about architecture: "how does X work", "where is Y", "explain Z"
+   - Questions about conventions: "what's the naming convention", "how should I structure"
+   - Questions about bugs/issues: "have we seen this", "similar issues"
+   - Questions about tech stack: "what framework", "what version"
+   - Code modification requests in a project context
+
+   **→ Proactively suggest initialization**:
+   ```
+   🔍 I notice this project doesn't have a knowledge base yet.
+
+   Would you like me to scan and initialize Project Guardian? This will:
+   - Automatically detect your tech stack and tools
+   - Learn your code conventions and architecture
+   - Enable smart bug tracking and prevention
+   - Take ~10 seconds for most projects
+
+   Should I proceed with the scan? (yes/no)
+   ```
+
+3. **If found**:
+   - Load core context from `.project-ai/core/`
+   - Proceed with user's request using project knowledge
+
+### Smart Initialization Triggers
+
+**Auto-initialize when**:
+- User explicitly requests: "scan project", "initialize", "setup guardian"
+- User asks architecture questions in uninitialized project
+- User tries to record bugs/requirements without knowledge base
+- User asks "what's in this project" or similar exploratory questions
+
+**Don't auto-initialize when**:
+- User is just asking general coding questions
+- Working directory is not a code project (no package.json, go.mod, etc.)
+- User is in a temporary/test directory
+- User explicitly says "no" to initialization
 
 ## Workflow Decision Tree
 
