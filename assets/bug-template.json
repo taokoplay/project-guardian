@@ -1,0 +1,16 @@
+{
+  "title": "Brief description of the bug",
+  "description": "Detailed description of what went wrong and how to reproduce",
+  "root_cause": "The underlying reason why this bug occurred",
+  "solution": "How the bug was fixed",
+  "files_changed": [
+    "path/to/file1.ts",
+    "path/to/file2.ts"
+  ],
+  "tags": [
+    "api",
+    "timeout",
+    "payment"
+  ],
+  "severity": "medium"
+}

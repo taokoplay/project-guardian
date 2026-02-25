@@ -1,0 +1,20 @@
+{
+  "title": "Brief description of the requirement",
+  "description": "Detailed description of what needs to be implemented",
+  "status": "planned",
+  "priority": "medium",
+  "related_modules": [
+    "auth",
+    "user"
+  ],
+  "acceptance_criteria": [
+    "User can login with WeChat",
+    "User profile syncs from WeChat",
+    "Existing accounts can be linked"
+  ],
+  "tags": [
+    "authentication",
+    "oauth",
+    "wechat"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Brief description of the decision",
+  "context": "What is the situation and problem that needs to be addressed?",
+  "decision": "What is the change that we're proposing and/or doing?",
+  "rationale": "Why did we choose this approach?",
+  "consequences": [
+    "Positive consequence 1",
+    "Negative consequence 1",
+    "Trade-off consideration"
+  ],
+  "alternatives": [
+    "Alternative approach 1 and why it wasn't chosen",
+    "Alternative approach 2 and why it wasn't chosen"
+  ],
+  "tags": [
+    "architecture",
+    "database",
+    "performance"
+  ]
+}
