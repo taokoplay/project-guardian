@@ -206,8 +206,81 @@ def main():
 
         updater.update_module_info(module_name, info)
 
+    # Quick bug recording (no JSON file needed)
+    elif "--quick-bug" in args:
+        title_idx = args.index("--title") if "--title" in args else None
+        desc_idx = args.index("--desc") if "--desc" in args else None
+
+        if not title_idx or not desc_idx:
+            print("❌ --quick-bug requires --title and --desc")
+            sys.exit(1)
+
+        bug_data = {
+            "title": args[title_idx + 1],
+            "description": args[desc_idx + 1],
+            "root_cause": args[args.index("--cause") + 1] if "--cause" in args else "",
+            "solution": args[args.index("--solution") + 1] if "--solution" in args else "",
+            "tags": args[args.index("--tags") + 1].split(",") if "--tags" in args else [],
+            "severity": args[args.index("--severity") + 1] if "--severity" in args else "medium",
+            "files_changed": args[args.index("--files") + 1].split(",") if "--files" in args else []
+        }
+
+        bug_id = updater.record_bug(bug_data)
+        print(f"✅ Bug recorded: {bug_id}")
+
+    # Quick requirement recording
+    elif "--quick-req" in args:
+        title_idx = args.index("--title") if "--title" in args else None
+        desc_idx = args.index("--desc") if "--desc" in args else None
+
+        if not title_idx or not desc_idx:
+            print("❌ --quick-req requires --title and --desc")
+            sys.exit(1)
+
+        req_data = {
+            "title": args[title_idx + 1],
+            "description": args[desc_idx + 1],
+            "rationale": args[args.index("--rationale") + 1] if "--rationale" in args else "",
+            "acceptance_criteria": args[args.index("--criteria") + 1].split(";") if "--criteria" in args else [],
+            "tags": args[args.index("--tags") + 1].split(",") if "--tags" in args else [],
+            "priority": args[args.index("--priority") + 1] if "--priority" in args else "medium",
+            "status": args[args.index("--status") + 1] if "--status" in args else "proposed"
+        }
+
+        req_id = updater.record_requirement(req_data)
+        print(f"✅ Requirement recorded: {req_id}")
+
+    # Quick decision recording
+    elif "--quick-decision" in args:
+        title_idx = args.index("--title") if "--title" in args else None
+        context_idx = args.index("--context") if "--context" in args else None
+        decision_idx = args.index("--decision") if "--decision" in args else None
+
+        if not title_idx or not context_idx or not decision_idx:
+            print("❌ --quick-decision requires --title, --context, and --decision")
+            sys.exit(1)
+
+        decision_data = {
+            "title": args[title_idx + 1],
+            "context": args[context_idx + 1],
+            "decision": args[decision_idx + 1],
+            "consequences": args[args.index("--consequences") + 1] if "--consequences" in args else "",
+            "alternatives": args[args.index("--alternatives") + 1].split(";") if "--alternatives" in args else [],
+            "tags": args[args.index("--tags") + 1].split(",") if "--tags" in args else []
+        }
+
+        decision_id = updater.record_decision(decision_data)
+        print(f"✅ Decision recorded: {decision_id}")
+
     else:
         print("❌ Invalid arguments")
+        print("\nUsage:")
+        print("  Record bug:        python update_knowledge.py <project_path> --bug <bug_file.json>")
+        print("  Quick bug:         python update_knowledge.py <project_path> --quick-bug --title 'Title' --desc 'Description' [--cause 'Cause'] [--solution 'Solution'] [--tags 'tag1,tag2'] [--severity low|medium|high|critical]")
+        print("  Record requirement: python update_knowledge.py <project_path> --requirement <req_file.json>")
+        print("  Quick requirement:  python update_knowledge.py <project_path> --quick-req --title 'Title' --desc 'Description' [--rationale 'Why'] [--criteria 'c1;c2'] [--priority low|medium|high] [--status proposed|approved|in-progress|completed]")
+        print("  Record decision:    python update_knowledge.py <project_path> --decision <decision_file.json>")
+        print("  Quick decision:     python update_knowledge.py <project_path> --quick-decision --title 'Title' --context 'Context' --decision 'Decision' [--consequences 'Consequences'] [--alternatives 'alt1;alt2']")
         sys.exit(1)
 
 

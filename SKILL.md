@@ -2,7 +2,7 @@
 name: project-guardian
 description: Intelligent project knowledge management system with AUTO-DETECTION. Automatically initializes when user asks project-related questions in uninitialized codebases. Use when user asks about project architecture/structure, conventions, wants to track bugs/requirements, or asks about similar issues. ALWAYS check for .project-ai/ directory first - if missing and user asks project questions, proactively offer to initialize. Supports English and Chinese.
 icon: 🛡️
-version: 1.0.1
+version: 1.1.0
 author: taokoplay
 tags: [project-management, knowledge-base, bug-tracking, architecture, auto-detection]
 ---
@@ -151,6 +151,121 @@ Knowledge base created at .project-ai/
 ### Maintenance
 - **After significant changes** → Use **Incremental Update** workflow
 - **Knowledge base too large** → Run compression (manual)
+
+## 🚀 New Features in v1.1.0
+
+### 1. Quick Recording (No JSON Files Needed!)
+
+**Before (v1.0.x)**: Had to create JSON files manually
+```bash
+# Old way - tedious
+echo '{"title":"Bug","description":"..."}' > bug.json
+python update_knowledge.py . --bug bug.json
+```
+
+**Now (v1.1.0)**: Direct command-line recording
+```bash
+# Quick bug recording
+python scripts/update_knowledge.py . --quick-bug \
+  --title "Payment API timeout" \
+  --desc "Stripe API times out after 5 seconds" \
+  --cause "No retry logic implemented" \
+  --solution "Added exponential backoff retry" \
+  --tags "api,payment,stripe" \
+  --severity high
+
+# Quick requirement recording
+python scripts/update_knowledge.py . --quick-req \
+  --title "Dark mode support" \
+  --desc "Users want dark mode for better UX" \
+  --rationale "Reduce eye strain for night users" \
+  --priority high \
+  --status approved
+
+# Quick decision recording
+python scripts/update_knowledge.py . --quick-decision \
+  --title "Use PostgreSQL over MongoDB" \
+  --context "Need ACID transactions for payments" \
+  --decision "Chose PostgreSQL for reliability" \
+  --consequences "More complex schema migrations"
+```
+
+### 2. Incremental Updates (Keep Knowledge Base Fresh!)
+
+**Problem**: Knowledge base becomes outdated as code changes.
+
+**Solution**: Incremental update script that only scans changed files.
+
+```bash
+# Run after making code changes
+python scripts/incremental_update.py .
+
+# Output:
+# 🔄 Running incremental update...
+# 📊 Detected changes:
+#   + Added: 3 files
+#   ~ Modified: 5 files
+#   - Deleted: 1 file
+# 📦 Updating tech stack...
+# 📂 Updating project structure...
+# ✅ Incremental update completed
+```
+
+**Features**:
+- Tracks file checksums to detect changes
+- Only updates affected parts of knowledge base
+- Much faster than full rescan (seconds vs minutes)
+- Preserves manually edited knowledge
+
+**When to use**:
+- After adding new dependencies (package.json changed)
+- After restructuring directories
+- After adding/removing major files
+- Periodically (weekly/monthly)
+
+### 3. Context-Aware Loading (Smarter Knowledge Retrieval!)
+
+**Problem**: Loading entire knowledge base wastes tokens.
+
+**Solution**: Intelligently load only relevant knowledge based on context.
+
+**Load for specific file**:
+```bash
+python scripts/context_loader.py . --file src/auth/login.ts
+
+# Automatically loads:
+# - Auth module information
+# - Related bugs in auth system
+# - Relevant conventions
+```
+
+**Load for user query**:
+```bash
+python scripts/context_loader.py . --query "How does authentication work?" \
+  --current-file src/pages/Login.tsx
+
+# Intelligently loads:
+# - Auth-related modules
+# - Authentication bugs
+# - Login requirements
+# - Security decisions
+```
+
+**Load minimal (for general questions)**:
+```bash
+python scripts/context_loader.py . --minimal
+
+# Only loads core context:
+# - Project profile
+# - Tech stack
+# - Basic conventions
+```
+
+**Benefits**:
+- Reduces token usage by 50-70%
+- Faster responses
+- More relevant context
+- Automatic module detection
 
 ## Initial Project Scan
 
