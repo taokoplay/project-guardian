@@ -84,11 +84,11 @@ echo -e "${YELLOW}📤 Pushing to GitHub...${NC}"
 
 if [ -n "$TOKEN" ]; then
     # Use token if provided
-    git remote set-url origin "https://${TOKEN}@github.com/taokoplay/project-guardian.git"
+    git remote set-url origin "https://${TOKEN}@github.com/taokoplay/project-guardian-skill.git"
     git push origin main
     git push origin "$TAG"
     # Clean up token
-    git remote set-url origin "https://github.com/taokoplay/project-guardian.git"
+    git remote set-url origin "https://github.com/taokoplay/project-guardian-skill.git"
 else
     # Use default authentication
     git push origin main
@@ -126,7 +126,7 @@ echo ""
 echo -e "${BLUE}📋 Next steps:${NC}"
 echo ""
 echo "1. Create GitHub Release:"
-echo -e "   ${BLUE}https://github.com/taokoplay/project-guardian/releases/new${NC}"
+echo -e "   ${BLUE}https://github.com/taokoplay/project-guardian-skill/releases/new${NC}"
 echo ""
 echo "2. Select tag: $TAG"
 echo ""
@@ -137,7 +137,7 @@ echo ""
 echo "5. Publish release"
 echo ""
 echo -e "${BLUE}📊 Version info:${NC}"
-echo "   Repository: https://github.com/taokoplay/project-guardian"
+echo "   Repository: https://github.com/taokoplay/project-guardian-skill"
 echo "   Tag: $TAG"
 echo "   Commit: $(git rev-parse --short HEAD)"
 echo ""

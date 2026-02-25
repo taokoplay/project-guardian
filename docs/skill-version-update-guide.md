@@ -1,4 +1,4 @@
-# Project Guardian - 版本更新指南
+# Project Guardian Skill - 版本更新指南
 
 ## 📋 版本更新流程
 
@@ -113,7 +113,7 @@ git push origin --tags
 
 **方式 1: 通过 GitHub 网页**
 
-1. 访问 https://github.com/taokoplay/project-guardian/releases/new
+1. 访问 https://github.com/taokoplay/project-guardian-skill/releases/new
 2. 选择标签: `v1.1.0`
 3. Release title: `Project Guardian v1.1.0`
 4. 描述: 复制 CHANGELOG.md 中的内容
@@ -210,7 +210,7 @@ echo ""
 echo "✅ Release $TAG completed!"
 echo ""
 echo "📋 Next steps:"
-echo "1. Create GitHub Release: https://github.com/taokoplay/project-guardian/releases/new"
+echo "1. Create GitHub Release: https://github.com/taokoplay/project-guardian-skill/releases/new"
 echo "2. Select tag: $TAG"
 echo "3. Copy CHANGELOG content"
 echo "4. Publish release"
@@ -327,13 +327,13 @@ git commit -m "Update Project Guardian to v1.1.0"
 ```bash
 cd ~/tools
 rm -rf project-guardian
-git clone https://github.com/taokoplay/project-guardian.git
+git clone https://github.com/taokoplay/project-guardian-skill.git
 ```
 
 ### 方式 4: 下载特定版本
 
 ```bash
-curl -L https://github.com/taokoplay/project-guardian/archive/refs/tags/v1.1.0.tar.gz -o pg-1.1.0.tar.gz
+curl -L https://github.com/taokoplay/project-guardian-skill/archive/refs/tags/v1.1.0.tar.gz -o pg-1.1.0.tar.gz
 tar -xzf pg-1.1.0.tar.gz
 ```
 
@@ -522,7 +522,7 @@ git log v1.0.0..v1.1.0 --oneline
 - Performance improvements
 - Bug fixes
 
-[View Changelog](CHANGELOG.md) | [Download](https://github.com/taokoplay/project-guardian/releases/latest)
+[View Changelog](CHANGELOG.md) | [Download](https://github.com/taokoplay/project-guardian-skill/releases/latest)
 ```
 
 ### 在 GitHub Release 中说明
@@ -545,7 +545,7 @@ git log v1.0.0..v1.1.0 --oneline
 ## 📥 Installation
 
 \`\`\`bash
-git clone https://github.com/taokoplay/project-guardian.git
+git clone https://github.com/taokoplay/project-guardian-skill.git
 cd project-guardian
 ./install.sh /path/to/your/project
 \`\`\`
@@ -557,7 +557,7 @@ cd ~/tools/project-guardian
 git pull origin main
 \`\`\`
 
-Full Changelog: [v1.0.0...v1.1.0](https://github.com/taokoplay/project-guardian/compare/v1.0.0...v1.1.0)
+Full Changelog: [v1.0.0...v1.1.0](https://github.com/taokoplay/project-guardian-skill/compare/v1.0.0...v1.1.0)
 ```
 
 ---

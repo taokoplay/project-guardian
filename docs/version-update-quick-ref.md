@@ -1,4 +1,4 @@
-# Project Guardian - 版本更新快速参考
+# Project Guardian Skill - 版本更新快速参考
 
 ## 🚀 快速发布 (推荐)
 
@@ -17,7 +17,7 @@ git commit -m "feat: add new feature"
 ./release.sh 1.1.0 ghp_YOUR_TOKEN
 
 # 5. 创建 GitHub Release (手动)
-# 访问: https://github.com/taokoplay/project-guardian/releases/new
+# 访问: https://github.com/taokoplay/project-guardian-skill/releases/new
 ```
 
 ## 📋 版本号规则
@@ -69,7 +69,7 @@ git submodule update --remote .guardian
 
 ### 重新克隆
 ```bash
-git clone https://github.com/taokoplay/project-guardian.git
+git clone https://github.com/taokoplay/project-guardian-skill.git
 ```
 
 ## 📊 CHANGELOG.md 模板
@@ -175,7 +175,7 @@ git push origin :refs/tags/v1.0.0
 
 - [完整版本更新指南](skill-version-update-guide.md)
 - [CHANGELOG.md](../project-guardian/CHANGELOG.md)
-- [GitHub Releases](https://github.com/taokoplay/project-guardian/releases)
+- [GitHub Releases](https://github.com/taokoplay/project-guardian-skill/releases)
 
 ---
 

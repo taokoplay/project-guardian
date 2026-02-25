@@ -3,11 +3,11 @@ name: project-guardian
 description: Intelligent project knowledge management system with AUTO-DETECTION. Automatically initializes when user asks project-related questions in uninitialized codebases. Use when (1) User asks about project architecture/structure: "how does X work", "where is Y", "explain the auth flow", "项目结构", "认证怎么工作", (2) User asks about conventions: "what's our naming convention", "how should I structure this", "代码规范", "命名规范", (3) User wants to track bugs/requirements: "record this bug", "save requirement", "document decision", "记录bug", "保存需求", "记录决策", (4) User asks about similar issues: "have we seen this before", "similar bugs", "之前遇到过吗", "类似问题", (5) User explicitly initializes: "scan project", "setup guardian", "initialize knowledge base", "扫描项目", "初始化知识库". ALWAYS check for .project-ai/ directory first - if missing and user asks project questions, proactively offer to initialize. Supports English and Chinese.
 ---
 
-# Project Guardian
+# Project Guardian Skill
 
 ## Overview
 
-Project Guardian maintains a lightweight, token-efficient knowledge base about your codebase. It automatically learns your project's architecture, conventions, and history to provide context-aware assistance and prevent recurring issues.
+Project Guardian Skill maintains a lightweight, token-efficient knowledge base about your codebase. It automatically learns your project's architecture, conventions, and history to provide context-aware assistance and prevent recurring issues.
 
 **Key Features:**
 - Zero-configuration project scanning

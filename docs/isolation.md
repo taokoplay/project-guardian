@@ -1,4 +1,4 @@
-# Project Guardian - 多项目数据隔离说明
+# Project Guardian Skill - 多项目数据隔离说明
 
 ## ✅ 数据隔离保证
 
