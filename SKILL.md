@@ -2,7 +2,7 @@
 name: project-guardian
 description: Intelligent project knowledge management system with AUTO-DETECTION. Automatically initializes when user asks project-related questions in uninitialized codebases. Use when user asks about project architecture/structure, conventions, wants to track bugs/requirements, or asks about similar issues. ALWAYS check for .project-ai/ directory first - if missing and user asks project questions, proactively offer to initialize. Supports English and Chinese.
 icon: 🛡️
-version: 1.1.0
+version: 1.2.0
 author: taokoplay
 tags: [project-management, knowledge-base, bug-tracking, architecture, auto-detection]
 ---
@@ -151,6 +151,115 @@ Knowledge base created at .project-ai/
 ### Maintenance
 - **After significant changes** → Use **Incremental Update** workflow
 - **Knowledge base too large** → Run compression (manual)
+- **Check health** → Use **Health Check** workflow
+
+## 🚀 New Features in v1.2.0
+
+### 1. Version Tracking & Git Integration 📌
+
+**Problem**: Can't trace when knowledge base was updated or which code version it corresponds to.
+
+**Solution**: Automatic Git commit tracking with every knowledge base update.
+
+```bash
+# View current Git commit
+python scripts/version_tracker.py . --current
+
+# View recent versions
+python scripts/version_tracker.py . --recent 10
+
+# Associate bug with commit
+python scripts/version_tracker.py . --bug BUG-20260225-001 \
+  --fixed abc1234 \
+  --introduced def5678
+
+# Generate knowledge base changelog
+python scripts/version_tracker.py . --changelog
+
+# Find bugs fixed in commit range
+python scripts/version_tracker.py . --bugs-in-range v1.0.0 HEAD
+```
+
+**Features**:
+- Automatically records Git commit hash with each update
+- Tracks commit message, author, date, and branch
+- Associates bugs with the commits that fixed/introduced them
+- Generates knowledge base changelog from version history
+- Enables historical analysis and code evolution tracking
+
+**Auto-integration**:
+- `scan_project.py` automatically records initial version
+- `incremental_update.py` automatically records update version
+- No manual intervention needed!
+
+### 2. Health Monitoring 🏥
+
+**Problem**: Don't know if knowledge base is up-to-date, complete, or being used effectively.
+
+**Solution**: Comprehensive health checker with actionable recommendations.
+
+```bash
+# Run health check
+python scripts/health_checker.py .
+
+# Output as JSON
+python scripts/health_checker.py . --json
+```
+
+**Health Check Report**:
+```
+🏥 Running knowledge base health check...
+
+Checking Freshness...
+  ✅ Knowledge base is 2 days old (fresh)
+
+Checking Completeness...
+  ✅ All required files and directories exist
+
+Checking Bug Quality...
+  🟡 3/10 bugs missing solution
+  ℹ️  2/10 bugs missing tags
+
+Checking Size...
+  📊 Total records: 25 (10 bugs, 8 requirements, 7 decisions)
+
+Checking Usage...
+  ✅ 5 bugs recorded in the last 30 days (active)
+
+============================================================
+📊 HEALTH CHECK RESULTS
+============================================================
+
+🎯 Overall Score: 82/100
+📈 Status: 🟡 Good
+
+📋 Detailed Scores:
+  Freshness: 100/100
+  Completeness: 100/100
+  Bug Quality: 70/100
+  Size: 100/100
+  Usage: 100/100
+
+💡 Recommendations:
+  1. 📝 Review and update bug records with solutions
+  2. 🔎 Analyze bugs and document root causes
+
+⏰ Checked at: 2026-02-25T22:30:00
+============================================================
+```
+
+**What it checks**:
+- **Freshness**: How recently was the knowledge base updated?
+- **Completeness**: Are all required files present?
+- **Bug Quality**: Do bugs have solutions and root causes?
+- **Size**: Is the knowledge base too large or too small?
+- **Usage**: Is it being actively used?
+
+**Scoring**:
+- 🟢 90-100: Excellent
+- 🟡 75-89: Good
+- 🟠 60-74: Fair
+- 🔴 <60: Needs Attention
 
 ## 🚀 New Features in v1.1.0
 

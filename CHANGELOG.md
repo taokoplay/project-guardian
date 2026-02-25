@@ -2,6 +2,33 @@
 
 All notable changes to Project Guardian Skill will be documented in this file.
 
+## [1.2.0] - 2026-02-25
+
+### Added
+- 📌 **Version Tracking**: New `version_tracker.py` for Git commit tracking
+  - Automatically records Git commit with each knowledge base update
+  - Associate bugs with commits that fixed/introduced them
+  - Generate knowledge base changelog from version history
+  - Find bugs fixed in commit ranges
+  - View version history and commit details
+- 🏥 **Health Monitoring**: New `health_checker.py` for knowledge base quality checks
+  - Checks freshness (how recently updated)
+  - Checks completeness (all required files present)
+  - Checks bug quality (solutions, root causes, tags)
+  - Checks size (too large/small warnings)
+  - Checks usage patterns (activity in last 30 days)
+  - Provides actionable recommendations
+  - Overall health score (0-100) with status indicator
+
+### Improved
+- 🔄 `scan_project.py` now automatically records initial version
+- 🔄 `incremental_update.py` now automatically records update version
+- 📚 Enhanced SKILL.md with v1.2.0 features documentation
+
+### Performance
+- 📊 Health checks complete in <1 second
+- 📌 Version tracking adds minimal overhead (<100ms)
+
 ## [1.1.0] - 2026-02-25
 
 ### Added

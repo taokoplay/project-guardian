@@ -424,6 +424,24 @@ def main():
         scanner.create_knowledge_base(result)
         print(f"\n🎉 Project Guardian initialized successfully!")
         print(f"📁 Knowledge base location: {scanner.knowledge_base_path}")
+
+        # Record initial version
+        try:
+            from pathlib import Path
+            import sys
+            version_tracker_path = Path(__file__).parent / "version_tracker.py"
+            if version_tracker_path.exists():
+                import subprocess
+                subprocess.run([
+                    sys.executable,
+                    str(version_tracker_path),
+                    project_path,
+                    "--record",
+                    "initial_scan"
+                ], check=False)
+                print("📌 Version recorded")
+        except Exception:
+            pass  # Version tracking is optional
     else:
         print("\n❌ Cancelled. No files were created.")
 

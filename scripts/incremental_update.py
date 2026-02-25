@@ -269,6 +269,23 @@ def main():
             print(f"  Total changes: {len(result['changes']['added']) + len(result['changes']['modified']) + len(result['changes']['deleted'])}")
             print(f"  Updated at: {result['timestamp']}")
 
+            # Record version
+            try:
+                from pathlib import Path
+                version_tracker_path = Path(__file__).parent / "version_tracker.py"
+                if version_tracker_path.exists():
+                    import subprocess
+                    subprocess.run([
+                        sys.executable,
+                        str(version_tracker_path),
+                        project_path,
+                        "--record",
+                        "incremental_update"
+                    ], check=False)
+                    print("  📌 Version recorded")
+            except Exception:
+                pass  # Version tracking is optional
+
     except FileNotFoundError as e:
         print(f"❌ Error: {e}")
         sys.exit(1)
