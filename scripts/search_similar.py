@@ -3,6 +3,10 @@
 Project Guardian - Similarity Search
 
 Search for similar bugs, requirements, or decisions in the knowledge base.
+Supports both TF-IDF (default) and semantic search (optional).
+
+For better results, install sentence-transformers:
+    pip install sentence-transformers
 """
 
 import os
@@ -13,9 +17,15 @@ from typing import Dict, List, Any, Tuple
 from collections import Counter
 import re
 
+# Check if semantic search is available
+try:
+    from semantic_search import SemanticSearcher, SEMANTIC_SEARCH_AVAILABLE
+except ImportError:
+    SEMANTIC_SEARCH_AVAILABLE = False
+
 
 class SimilaritySearcher:
-    def __init__(self, project_path: str):
+    def __init__(self, project_path: str, use_semantic: bool = False):
         self.project_path = Path(project_path).resolve()
         self.kb_path = self.project_path / ".project-ai"
 
@@ -25,8 +35,21 @@ class SimilaritySearcher:
                 "Run scan_project.py first to initialize."
             )
 
+        self.use_semantic = use_semantic and SEMANTIC_SEARCH_AVAILABLE
+        if use_semantic and not SEMANTIC_SEARCH_AVAILABLE:
+            print("⚠️  Semantic search requested but not available. Falling back to TF-IDF.")
+
+        if self.use_semantic:
+            self.semantic_searcher = SemanticSearcher(project_path)
+
     def search_bugs(self, query: str, top_k: int = 3) -> List[Dict[str, Any]]:
         """Search for similar bugs"""
+        # Use semantic search if available
+        if self.use_semantic:
+            results = self.semantic_searcher.search(query, top_k, record_type="bug")
+            return [r["record"] for r in results]
+
+        # Fall back to TF-IDF search
         bugs_dir = self.kb_path / "history" / "bugs"
 
         if not bugs_dir.exists():

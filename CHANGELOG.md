@@ -2,6 +2,33 @@
 
 All notable changes to Project Guardian Skill will be documented in this file.
 
+## [1.3.0] - 2026-02-25
+
+### Added
+- 🧠 **Query Pattern Learning**: New `query_logger.py` and `pattern_analyzer.py` for usage analysis
+  - Automatically log user queries
+  - Analyze frequent question patterns
+  - Identify knowledge gaps (queries without results)
+  - Track popular modules and topics
+  - Time-based usage patterns
+  - Actionable recommendations for knowledge base improvement
+- 🎯 **Semantic Search (Optional)**: New `semantic_search.py` for AI-powered search
+  - Uses sentence-transformers for semantic similarity
+  - Understands meaning, not just keywords
+  - Optional dependency - falls back to TF-IDF if not installed
+  - Build and cache embeddings for fast search
+  - Integrated into `search_similar.py` with `--semantic` flag
+
+### Improved
+- 🔍 Enhanced `search_similar.py` with semantic search support
+- 📚 Comprehensive documentation for new features in SKILL.md
+- 🎨 Better error messages and graceful fallbacks
+
+### Performance
+- 📊 Pattern analysis completes in <2 seconds
+- 🎯 Semantic search: ~100ms after embeddings built
+- 💾 Embeddings cached for reuse
+
 ## [1.2.0] - 2026-02-25
 
 ### Added

@@ -2,7 +2,7 @@
 name: project-guardian
 description: Intelligent project knowledge management system with AUTO-DETECTION. Automatically initializes when user asks project-related questions in uninitialized codebases. Use when user asks about project architecture/structure, conventions, wants to track bugs/requirements, or asks about similar issues. ALWAYS check for .project-ai/ directory first - if missing and user asks project questions, proactively offer to initialize. Supports English and Chinese.
 icon: 🛡️
-version: 1.2.0
+version: 1.3.0
 author: taokoplay
 tags: [project-management, knowledge-base, bug-tracking, architecture, auto-detection]
 ---
@@ -152,6 +152,131 @@ Knowledge base created at .project-ai/
 - **After significant changes** → Use **Incremental Update** workflow
 - **Knowledge base too large** → Run compression (manual)
 - **Check health** → Use **Health Check** workflow
+- **Analyze usage patterns** → Use **Pattern Analysis** workflow
+
+## 🚀 New Features in v1.3.0
+
+### 1. Query Pattern Learning 🧠
+
+**Problem**: Don't know what users are asking about or where knowledge gaps exist.
+
+**Solution**: Automatic query logging and pattern analysis to optimize knowledge base.
+
+```bash
+# Log a query (automatic in workflows)
+python scripts/query_logger.py . --log "How does authentication work?"
+
+# View recent queries
+python scripts/query_logger.py . --recent 20
+
+# Search queries by keyword
+python scripts/query_logger.py . --search "auth"
+
+# Get query statistics
+python scripts/query_logger.py . --stats
+```
+
+**Pattern Analysis**:
+```bash
+# Full analysis report
+python scripts/pattern_analyzer.py .
+
+# Frequent questions
+python scripts/pattern_analyzer.py . --frequent 10
+
+# Knowledge gaps (queries without results)
+python scripts/pattern_analyzer.py . --gaps
+
+# Popular modules
+python scripts/pattern_analyzer.py . --modules
+
+# Time patterns
+python scripts/pattern_analyzer.py . --time
+
+# Get recommendations
+python scripts/pattern_analyzer.py . --recommend
+```
+
+**Example Report**:
+```
+📊 QUERY PATTERN ANALYSIS REPORT
+============================================================
+
+🔥 Top 5 Frequent Question Patterns:
+  1. auth + login + work (12 times)
+  2. payment + stripe + timeout (8 times)
+  3. database + query + slow (6 times)
+
+📝 Knowledge Gaps: 15 queries without results
+  Recent examples:
+    - How to implement rate limiting?
+    - What's our caching strategy?
+
+📦 Top 5 Popular Modules:
+  1. auth: 25 queries
+  2. api: 18 queries
+  3. database: 12 queries
+
+💡 Recommendations:
+  📝 Found 15 queries without results. Consider documenting:
+     - rate (5 queries)
+     - cache (4 queries)
+     - performance (3 queries)
+  🔥 Most queried module: auth (25 queries). Consider adding more documentation.
+```
+
+**Benefits**:
+- Identify frequently asked questions
+- Discover knowledge gaps
+- Understand which modules need more documentation
+- Track usage patterns over time
+- Get actionable recommendations
+
+### 2. Semantic Search (Optional) 🎯
+
+**Problem**: Keyword-based search misses semantically similar content.
+
+**Solution**: Optional semantic search using AI embeddings for better results.
+
+**Installation** (optional):
+```bash
+pip install sentence-transformers
+```
+
+**Build embeddings**:
+```bash
+python scripts/semantic_search.py . --build
+```
+
+**Search with semantic understanding**:
+```bash
+# Semantic search (understands meaning)
+python scripts/semantic_search.py . --search "login not working" --top 5
+
+# Search specific type
+python scripts/semantic_search.py . --search "payment fails" --type bug
+
+# Check status
+python scripts/semantic_search.py . --status
+```
+
+**Comparison**:
+
+| Feature | TF-IDF (Default) | Semantic Search (Optional) |
+|---------|------------------|----------------------------|
+| Installation | ✅ Built-in | ⚙️ Requires sentence-transformers |
+| Speed | ⚡ Fast | 🐢 Slower (first time) |
+| Accuracy | 📊 Good | 🎯 Excellent |
+| Understanding | 🔤 Keywords only | 🧠 Semantic meaning |
+| Example | "auth bug" ≠ "login issue" | "auth bug" ≈ "login issue" |
+
+**Automatic fallback**: If semantic search is not installed, the system automatically falls back to TF-IDF search.
+
+**Integration**: `search_similar.py` now supports `--semantic` flag:
+```bash
+# Use semantic search if available
+python scripts/search_similar.py . --query "payment timeout" --semantic
+```
 
 ## 🚀 New Features in v1.2.0
 
