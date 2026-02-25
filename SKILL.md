@@ -2,7 +2,7 @@
 name: project-guardian
 description: Intelligent project knowledge management system with AUTO-DETECTION. Automatically initializes when user asks project-related questions in uninitialized codebases. Use when user asks about project architecture/structure, conventions, wants to track bugs/requirements, or asks about similar issues. ALWAYS check for .project-ai/ directory first - if missing and user asks project questions, proactively offer to initialize. Supports English and Chinese.
 icon: 🛡️
-version: 1.0.0
+version: 1.0.1
 author: taokoplay
 tags: [project-management, knowledge-base, bug-tracking, architecture, auto-detection]
 ---

@@ -2,6 +2,13 @@
 
 All notable changes to Project Guardian Skill will be documented in this file.
 
+## [1.0.1] - 2026-02-25
+
+### Fixed
+- 🔧 Added required YAML frontmatter fields (icon, version, author, tags) for proper skill loading in Claude Code
+- 📝 Simplified description field to prevent YAML parsing issues
+- ✅ Improved skill metadata display in Claude Code UI
+
 ## [1.0.0] - 2026-02-25
 
 ### Added
