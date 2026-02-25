@@ -18,12 +18,12 @@ Project Guardian 是一个轻量级的项目知识管理工具,帮助你:
 
 ```bash
 # 克隆仓库
-git clone https://github.com/your-username/project-guardian.git
+git clone https://github.com/taokoplay/project-guardian.git
 cd project-guardian
 
 # 或者作为子模块添加到项目中
 cd your-project
-git submodule add https://github.com/your-username/project-guardian.git .project-guardian-tool
+git submodule add https://github.com/taokoplay/project-guardian.git .project-guardian-tool
 ```
 
 ### 初始化项目

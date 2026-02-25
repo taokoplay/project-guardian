@@ -6,12 +6,12 @@
 
 ```bash
 # 方式 1: 克隆到本地
-git clone https://github.com/your-username/project-guardian.git
+git clone https://github.com/taokoplay/project-guardian.git
 cd project-guardian
 
 # 方式 2: 作为子模块添加
 cd your-project
-git submodule add https://github.com/your-username/project-guardian.git .guardian
+git submodule add https://github.com/taokoplay/project-guardian.git .guardian
 ```
 
 ### 2. 初始化项目
@@ -113,4 +113,4 @@ git push
 ## 需要帮助?
 
 - 查看 [故障排除](../README.md#故障排除)
-- 创建 [Issue](https://github.com/your-username/project-guardian/issues)
+- 创建 [Issue](https://github.com/taokoplay/project-guardian/issues)

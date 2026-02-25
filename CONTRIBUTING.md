@@ -53,7 +53,7 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/your-username/project-guardian.git
+git clone https://github.com/taokoplay/project-guardian.git
 cd project-guardian
 
 # 创建测试项目
