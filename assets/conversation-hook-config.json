@@ -1,0 +1,30 @@
+{
+  "enabled": true,
+  "auto_record_threshold": 0.8,
+  "suggest_threshold": 0.5,
+  "record_types": [
+    "bug",
+    "decision",
+    "requirement",
+    "convention",
+    "performance"
+  ],
+  "notification_style": "inline",
+  "filters": {
+    "min_message_length": 20,
+    "skip_greetings": true,
+    "skip_acknowledgments": true
+  },
+  "auto_record": {
+    "bug": true,
+    "decision": true,
+    "requirement": false,
+    "convention": false,
+    "performance": false
+  },
+  "context_awareness": {
+    "use_current_file": true,
+    "use_conversation_history": true,
+    "history_window": 5
+  }
+}

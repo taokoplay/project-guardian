@@ -1058,6 +1058,133 @@ python trigger_detector.py --stats /path/to/project
 - English: "analyze health", "show stats", "knowledge gaps"
 - Chinese: "分析健康", "显示统计", "知识缺口"
 
+### 🤖 Conversation Analysis & Auto-Recording (v1.4.0+)
+
+**NEW**: Automatically detect and record important information from conversations!
+
+#### Overview
+
+Project Guardian can analyze conversations to identify:
+- 🐛 Bug discoveries and solutions
+- 🏛️ Architecture decisions and rationale
+- 📋 Requirements and clarifications
+- 📏 Code conventions and best practices
+- ⚡ Performance insights and optimizations
+
+#### Quick Start
+
+```bash
+# Analyze a conversation
+python response_analyzer.py . \
+  --user "I found a bug in authentication" \
+  --assistant "The bug is caused by missing token validation..."
+
+# With auto-recording
+python conversation_hook.py . \
+  --user "..." --assistant "..."
+```
+
+#### How It Works
+
+1. **Pattern Detection**: Analyzes text for recordable patterns
+2. **Confidence Scoring**: Calculates 0-1 confidence score
+3. **Auto-Record** (≥0.8): Automatically creates knowledge base entry
+4. **Suggest** (≥0.5): Notifies with recording suggestions
+5. **Skip** (<0.5): No action taken
+
+#### Configuration
+
+```bash
+# Copy configuration template
+cp assets/conversation-hook-config.json .project-ai/config/
+
+# Edit thresholds
+{
+  "auto_record_threshold": 0.8,
+  "suggest_threshold": 0.5,
+  "notification_style": "inline",
+  "auto_record": {
+    "bug": true,
+    "decision": true,
+    "requirement": false
+  }
+}
+```
+
+#### Detection Patterns
+
+**Bug Detection**:
+- Triggers: "bug found", "error encountered", "root cause", "solution"
+- Chinese: "发现bug", "遇到错误", "解决方案"
+- Auto-record: Yes (default)
+
+**Decision Detection**:
+- Triggers: "decided to", "architecture decision", "trade-off"
+- Chinese: "决定", "架构决策", "权衡"
+- Auto-record: Yes (default)
+
+**Requirement Detection**:
+- Triggers: "requirement", "feature", "user story", "must"
+- Chinese: "需求", "功能", "用户故事"
+- Auto-record: No (suggest only)
+
+**Convention Detection**:
+- Triggers: "convention", "best practice", "always use"
+- Chinese: "约定", "最佳实践", "总是使用"
+- Auto-record: No (suggest only)
+
+**Performance Detection**:
+- Triggers: "performance", "optimization", "bottleneck"
+- Chinese: "性能", "优化", "瓶颈"
+- Auto-record: No (suggest only)
+
+#### Notification Styles
+
+**Inline** (brief):
+```
+🤖 [Project Guardian] Auto-recorded bug (confidence: 0.85)
+```
+
+**Summary** (detailed):
+```
+💡 [Project Guardian] Recordable content detected:
+   Type: bug
+   Confidence: 0.85
+   Suggestions:
+     - Record bug with error: missing token validation
+     - Use: python update_knowledge.py . --quick-bug
+```
+
+**Silent** (no output, check logs)
+
+#### Statistics
+
+```bash
+python conversation_hook.py . --stats
+
+# Output:
+{
+  "total_conversations": 150,
+  "auto_recorded": 12,
+  "suggested": 28,
+  "by_type": {
+    "bug": 8,
+    "decision": 4,
+    "requirement": 15
+  }
+}
+```
+
+#### Integration with Claude Code
+
+After important conversations, the skill can:
+1. Analyze conversation content
+2. Detect recordable patterns
+3. Auto-record or suggest recording
+4. Update knowledge base automatically
+
+For detailed documentation, see: [docs/conversation-analysis.md](docs/conversation-analysis.md)
+
 ### CI/CD Integration (Optional)
 
 Add to GitHub Actions workflow:

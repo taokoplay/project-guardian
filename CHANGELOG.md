@@ -26,6 +26,18 @@ All notable changes to Project Guardian Skill will be documented in this file.
   - commit-msg: Extracts bug fixes from commit messages
   - Interactive installation script with menu
   - Hook management (list, test, uninstall)
+- 🤖 **Conversation Analysis & Auto-Recording**: New `response_analyzer.py` and `conversation_hook.py`
+  - Automatic detection of recordable content from conversations
+  - Pattern-based analysis for bugs, decisions, requirements, conventions, performance
+  - Multi-language pattern matching (English and Chinese)
+  - Confidence-based auto-recording (threshold: 0.8)
+  - Configurable notification styles (inline, summary, silent)
+  - Conversation statistics tracking
+  - Extracted information (error messages, root causes, solutions, rationale)
+  - Smart suggestions for manual recording
+  - Integration-ready for Claude Code workflow
+  - Configuration template: `assets/conversation-hook-config.json`
+  - Comprehensive documentation: `docs/conversation-analysis.md`
 
 ### Improved
 - 📚 Enhanced `context_loader.py` with intelligent caching integration
