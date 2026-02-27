@@ -99,21 +99,29 @@ echo -e "${GREEN}✅ Pushed to GitHub${NC}"
 echo ""
 
 # 7. Update local skill (if exists)
-SKILL_DIR="/Users/xutaoyu/.craft-agent/workspaces/my-workspace/skills/project-guardian"
+# Use environment variables with fallback to default paths
+CRAFT_AGENT_HOME="${CRAFT_AGENT_HOME:-$HOME/.craft-agent}"
+WORKSPACE_NAME="${WORKSPACE_NAME:-my-workspace}"
+SKILL_DIR="${SKILL_DIR:-$CRAFT_AGENT_HOME/workspaces/$WORKSPACE_NAME/skills/project-guardian}"
+SKILLS_ROOT="${SKILLS_ROOT:-$CRAFT_AGENT_HOME/workspaces/$WORKSPACE_NAME/skills}"
+
 if [ -d "$SKILL_DIR" ]; then
     echo -e "${YELLOW}📦 Updating local skill...${NC}"
 
     # Copy files
     cp -r "$SCRIPT_DIR"/* "$SKILL_DIR/"
 
-    # Repackage
-    cd /Users/xutaoyu/.craft-agent/workspaces/my-workspace/skills
-    python skill-creator/scripts/package_skill.py project-guardian > /dev/null 2>&1
+    # Repackage (if skill-creator exists)
+    if [ -d "$SKILLS_ROOT/skill-creator" ]; then
+        cd "$SKILLS_ROOT"
+        python skill-creator/scripts/package_skill.py project-guardian > /dev/null 2>&1
+    fi
 
-    echo -e "${GREEN}✅ Local skill updated and repackaged${NC}"
+    echo -e "${GREEN}✅ Local skill updated${NC}"
     echo ""
 else
-    echo -e "${YELLOW}⚠️  Local skill directory not found, skipping update${NC}"
+    echo -e "${YELLOW}⚠️  Local skill directory not found: $SKILL_DIR${NC}"
+    echo -e "${YELLOW}   Set SKILL_DIR environment variable if needed${NC}"
     echo ""
 fi
 
