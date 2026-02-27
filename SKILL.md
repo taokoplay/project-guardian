@@ -9,6 +9,8 @@ tags: [project-management, knowledge-base, bug-tracking, architecture, auto-dete
 
 # Project Guardian Skill
 
+**Version:** 1.4.0 | **Author:** taokoplay | **License:** MIT
+
 ## Overview
 
 Project Guardian Skill maintains a lightweight, token-efficient knowledge base about your codebase. It automatically learns your project's architecture, conventions, and history to provide context-aware assistance and prevent recurring issues.
