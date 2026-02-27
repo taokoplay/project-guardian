@@ -2,14 +2,14 @@
 name: project-guardian
 description: Intelligent project knowledge management system with AUTO-DETECTION and SMART CACHING. Automatically initializes when user asks project-related questions. Features intelligent trigger detection, 40% faster loading with adaptive caching, and Git hooks automation. Use when user asks about project architecture/structure, conventions, wants to track bugs/requirements, or asks about similar issues. ALWAYS check for .project-ai/ directory first. Supports English and Chinese.
 icon: 🛡️
-version: 1.4.0
+version: 1.4.1
 author: taokoplay
 tags: [project-management, knowledge-base, bug-tracking, architecture, auto-detection, caching, automation]
 ---
 
 # Project Guardian Skill
 
-**Version:** 1.4.0 | **Author:** taokoplay | **License:** MIT
+**Version:** 1.4.1 | **Author:** taokoplay | **License:** MIT
 
 ## Overview
 

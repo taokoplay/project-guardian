@@ -2,6 +2,16 @@
 
 All notable changes to Project Guardian Skill will be documented in this file.
 
+## [1.4.1] - 2026-02-27
+
+### Improved
+- 📝 Enhanced version display in skill metadata
+- 🎨 Better UI presentation with version badge in header
+- 📚 Improved documentation formatting
+
+### Fixed
+- 🔧 Fixed version visibility in Claude Code UI
+
 ## [1.4.0] - 2026-02-26
 
 ### Added
