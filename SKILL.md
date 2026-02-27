@@ -1265,6 +1265,72 @@ If you're upgrading from v1.3.0, no migration needed! Just:
 
 That's it! All new features work with existing knowledge bases.
 
+## 📦 Version Information
+
+### Check Installed Version
+
+Use the version info tool to check your installed version and features:
+
+```bash
+# Display version information
+python scripts/version_info.py
+
+# Output as JSON
+python scripts/version_info.py --format json
+
+# View changelog
+python scripts/version_info.py --changelog
+
+# Check for updates
+python scripts/version_info.py --check-update
+```
+
+### Example Output
+
+```
+============================================================
+🛡️  PROJECT GUARDIAN SKILL - VERSION INFORMATION
+============================================================
+
+📦 Version:        1.4.0
+👤 Author:         taokoplay
+📝 Name:           project-guardian
+
+📍 Installation:
+   Path:           /Users/you/.craft-agent/skills/project-guardian
+   Date:           2026-02-27 11:57:07
+
+🔧 Git Information:
+   Branch:         main
+   Commit:         b7eb2f79
+   Commit Date:    2026-02-27 11:43:18 +0800
+   Status:         ✅ Clean
+
+✨ Key Features (v1.4.0):
+   🧠 Intelligent trigger detection (multi-language)
+   ⚡ Smart caching (40% faster, adaptive TTL)
+   🔗 Git hooks automation (auto-update on commit/merge)
+   📊 Cache statistics and monitoring
+
+📚 Description:
+   Intelligent project knowledge management system with
+   AUTO-DETECTION and SMART CACHING...
+============================================================
+```
+
+### Version Comparison
+
+Use this to verify which version you have installed and what features are available:
+
+| Version | Key Features |
+|---------|-------------|
+| 1.4.0 | Intelligent triggers, smart caching, Git hooks, multi-language |
+| 1.3.1 | Test suite, validation, file locking, production-ready |
+| 1.3.0 | Query patterns, semantic search, pattern analysis |
+| 1.2.0 | Version tracking, health monitoring, changelog |
+| 1.1.0 | Quick recording, incremental updates, context-aware loading |
+| 1.0.0 | Initial release, project scanning, bug tracking |
+
 ## Templates
 
 Use these templates for creating records:
